@@ -7,16 +7,46 @@
         <label>Gender</label>
         <div class="radio">
           <label>
-            <input type="radio" value="m" name="user[profile][gender]"checked="checked"> Male
+            <input type="radio" value="male" name="form[gender]"checked="checked"> Male
           </label>
           <label>
-            <input type="radio" value="f" name="user[profile][gender]"> Female
+            <input type="radio" value="female" name="form[gender]"> Female
+          </label>
+          <label>
+            <input type="radio" value="pterodactyl" name="form[gender]"> Pterodactyl
           </label>
         </div>
       </div>
       <!-- User Age -->
+      <div class="form-group">
+        <label for="minAge">Minimum Age</label>
+        <input type="number" class="form-control" name="form[minAge]" id="minAge" min="13" max="120">
+      </div>
+      <div class="form-group">
+        <label for="maxAge">Maximum Age</label>
+        <input type="number" class="form-control" name="form[maxAge]" id="maxAge" min="13" max="120">
+      </div>
+
+      <!-- Marital Status -->
+      <div class="form-check">
+        <label class="form-check-label">
+          <input class="form-check-input" name="form[marital][]" type="checkbox" value="single">
+          Single and ready to mingle
+        </label>
+      </div>
+      <div class="form-check">
+        <label class="form-check-label">
+          <input class="form-check-input" name="form[marital][]" type="checkbox" value="dating">
+          Dating
+        </label>
+      </div>
+      <div class="form-check">
+        <label class="form-check-label">
+          <input class="form-check-input" name="form[marital][]" type="checkbox" value="married">
+          Married
+        </label>
+      </div>
 
 
     </form>
-
 </div>
