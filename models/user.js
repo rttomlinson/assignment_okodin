@@ -53,6 +53,11 @@ module.exports = function(sequelize, DataTypes) {
             foreignKey: "userId"
           });
         }
+      },
+      instanceMethods: {
+        fullName: function() {
+          return `${this.fname} ${this.lname}`;
+        }
       }
     }
   );
