@@ -15,25 +15,25 @@ module.exports = function(sequelize, DataTypes) {
         validate: {
           max: 80
         }
-      }
+      },
       villagesCaptured: {
         type: DataTypes.INTEGER,
         validate: {
           min: 0
         }
-      }
+      },
       occupation: {
         type: DataTypes.STRING,
         validate: {
           max: 80
         }
-      }
+      },
       marital: {
         type: DataTypes.STRING,
         validate: {
           isIn: [['single', 'married', 'dating']]
         }
-      }
+      },
       gender: {
         type: DataTypes.STRING,
         validate: {
