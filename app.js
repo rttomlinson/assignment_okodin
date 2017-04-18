@@ -2,6 +2,7 @@ const express = require("express");
 const expressHbs = require("express-handlebars");
 const bodyParser = require("body-parser");
 const session = require("express-session");
+const url = require('url');
 
 const app = express();
 
@@ -27,6 +28,10 @@ app.engine("hbs", hbs.engine);
 app.use(bodyParser.urlencoded({
     extended: true
 }));
+
+// ----------------------------------------
+// Sessions
+// ----------------------------------------
 app.use(
     session({
         secret: "imasecretshhhhhhh",
@@ -34,6 +39,12 @@ app.use(
         saveUninitialized: true
     })
 );
+
+app.use((req, res, next) => {
+  res.locals.session = req.session;
+  res.locals.currentUser = req.session.currentUser;
+  next();
+});
 
 // ----------------------------------------
 // Flash Messages
@@ -88,8 +99,20 @@ app.use(express.static(`${__dirname}/public`));
 // ----------------------------------------
 // Routers
 // ----------------------------------------
+app.use((req, res, next) => {
+  var reqUrl = url.parse(req.url);
+  if (!req.session.currentUser &&
+    !['/', '/login'].includes(reqUrl.pathname)) {
+      res.redirect('/login');
+    } else {
+      next();
+    }
+});
+
 const indexRouter = require('./routers/index');
 const usersRouter = require('./routers/users');
+
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 

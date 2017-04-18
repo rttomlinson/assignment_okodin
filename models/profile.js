@@ -52,6 +52,16 @@ module.exports = function(sequelize, DataTypes) {
                     Profile.hasOne(models.User, {
                         foreignKey: "profileId"
                     });
+
+                    Profile.hasMany(models.View, {
+                      foreignKey: "viewerId"
+                    });
+
+                    Profile.belongsToMany(models.Profile, {
+                      through: models.View,
+                      as: 'ProfileView',
+                      foreignKey: 'vieweeId'
+                    });
                 }
             }
         }
