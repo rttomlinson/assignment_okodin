@@ -1,8 +1,11 @@
+
+{{> users/_searchForm }}
+
 <div class="row">
   {{#each users as |user|}}
     <div class="col-xs-4">
       <div class="user-image">
-        <img src="{{ userImage user }}">
+        <img class="" src="{{ user.Profile.image }}">
       </div>
       <div>
         {{ user.fullName }}

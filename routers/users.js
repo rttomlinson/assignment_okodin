@@ -19,4 +19,21 @@ router.get("/", (req, res, next) => {
         .catch(err => next(err));
 });
 
+router.get("/:id", (req, res, next) => {
+    let userId = req.params.id;
+    User.findById(userId, {
+            include: [{
+                model: Profile
+            }]
+        })
+        .then(user => {
+            res.render("users/show", {
+                user
+            });
+        })
+        .catch(err => next(err));
+});
+
+
+
 module.exports = router;
