@@ -16,7 +16,16 @@ router.get("/", (req, res, next) => {
                     gender: formParams.gender || { in: ['male', 'female', 'pterodactyl']
                     },
                     marital: { in: formParams.marital || ['single', 'dating', 'married']
-                    }
+                    },
+                    $and: [{
+                        age: {
+                            gte: formParams.minAge || 13
+                        }
+                    }, {
+                        age: {
+                            lte: formParams.maxAge || 120
+                        }
+                    }]
                 }
             }]
         })

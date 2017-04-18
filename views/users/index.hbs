@@ -3,13 +3,15 @@
 
 <div class="row">
   {{#each users as |user|}}
-    <div class="col-xs-4">
-      <div class="user-image">
-        <img class="" src="{{ user.Profile.image }}">
-      </div>
-      <div>
-        {{ user.fullName }}
-      </div>
-    </div>
+    <a href="{{ userPath user.id }}">
+        <div class="col-xs-4">
+          <div class="user-image">
+            <img class="" src="{{ user.Profile.image }}">
+          </div>
+          <div>
+            {{ user.fullName }}
+          </div>
+        </div>
+    </a>
   {{/each}}
 </div>
