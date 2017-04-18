@@ -41,9 +41,9 @@ app.use(
 );
 
 app.use((req, res, next) => {
-  res.locals.session = req.session;
-  res.locals.currentUser = req.session.currentUser;
-  next();
+    res.locals.session = req.session;
+    res.locals.currentUser = req.session.currentUser;
+    next();
 });
 
 // ----------------------------------------
@@ -100,19 +100,21 @@ app.use(express.static(`${__dirname}/public`));
 // Routers
 // ----------------------------------------
 app.use((req, res, next) => {
-  var reqUrl = url.parse(req.url);
-  if (!req.session.currentUser &&
-    !['/', '/login'].includes(reqUrl.pathname)) {
-      res.redirect('/login');
-    } else {
-      next();
+    var reqUrl = url.parse(req.url);
+    if (!req.session.currentUser &&
+        !['/', '/login'].includes(reqUrl.pathname)) {
+        res.redirect('/login');
+    }
+    else {
+        next();
     }
 });
 
 const indexRouter = require('./routers/index');
 const usersRouter = require('./routers/users');
+const viewsRouter = require('./routers/views');
 
-
+app.use('/views', viewsRouter);
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
