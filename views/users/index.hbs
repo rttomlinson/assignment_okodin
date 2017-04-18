@@ -1,7 +1,9 @@
 <div class="row">
   {{#each users as |user|}}
     <div class="col-xs-4">
-      <img src="{{ userImage user }}">
+      <div class="user-image">
+        <img src="{{ userImage user }}">
+      </div>
       <div>
         {{ user.fullName }}
       </div>
