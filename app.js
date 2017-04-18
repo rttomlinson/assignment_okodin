@@ -97,15 +97,15 @@ app.use('/users', usersRouter);
 // Error Handling
 // ----------------------------------------
 app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).send(err.stack);
+    console.error(err.stack);
+    res.status(500).send(err.stack);
 });
 
 // ----------------------------------------
 // Server
 // ----------------------------------------
 var port = process.env.PORT || process.argv[2] || 3000;
-var host = "localhost";
+var host = process.env.IP || "localhost";
 
 var args;
 process.env.NODE_ENV === "production" ? (args = [port]) : (args = [port, host]);
